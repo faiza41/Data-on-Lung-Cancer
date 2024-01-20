@@ -1,0 +1,7 @@
+library(meta)
+
+system_data <- data.frame(System = c("Wu et al., 2022", "Chen 2022", "Li et al., 2019", "Alexander et al., 2020", "Baldwin et al., 2020", "Choi et al., 2018", "Huang et al., 2018 (a)", "Huang et al., 2018 (b)", "Li et al., 2019", "Nasrullah et al., 2019", "Reddy et al., 2018", "Schwyzer et al., 2018", "Ardilla et al., 2019", "Coudray et al., 2018", "Venkadesh et al., 2021", "Zhang et al., 2019", "Huang et al., 2019 (a)", "Huang et al., (b)", "Cui et al., 2020 (a)", "Cui et al., 2020 (b)", "Chauvie et al., 2020", "Tam et al., 2021", "Schwyzer et al., 2020 (a)", "Schwyzer et al., 2020 (b)", "Kirienko et al., 2018", "Sibille et al., 2020", "Scott et al., 2019", "Chamberlin et al., 2021", "Hsu et al., 2020", "Duan et al., 2020 (a)", "Duan et al., 2020 (b)", "Duan et al., 2020 (c)", "Silva et al., 2017", "Chen et al., 2022", "Coruch et al., 2021"),  Specificity = c(0.96, 0.34, 0.82, 0.93, 0.28, 0.81, 0.92, 0.86, 0.91, 0.89, 1.00, 0.94, 0.95, 0.93, 0.90, 0.83, 0.60, 0.91, 0.82, 0.85, 1.00, 0.93, 0.79, 0.84, 0.67, 0.97, 0.93, 0.37, 0.85, 0.73, 0.68, 0.65, 0.95, 0.77, 0.58))
+system_data$n <- c(110, 168, 108, 7252, 1397, 103, 244, 244, 1226, 36378, 72, 50, 6716, 137, 175, 50, 2294, 2294, 888, 582, 1594, 396, 4412, 4412, 472, 629, 40, 222, 234, 834, 834, 834, 1343, 148, 158)
+meta_result <- metaprop(event = Specificity * n,  n = n,  data = system_data)
+forest(meta_result)
+forest(meta_result, col.subgroup = "black", studlab = paste(System), col.square = "black", col.diamond = "black", leftcols = c("studlab"))
